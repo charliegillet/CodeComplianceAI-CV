@@ -1,0 +1,19 @@
+# YOLOv12 dataset config for Code Capture AI floor plan detection
+# Full 10-class taxonomy for ADA/AODA compliance analysis
+
+path: dataset
+train: images/train
+val: images/val
+
+nc: 10
+names:
+  0: door
+  1: window
+  2: corridor
+  3: toilet
+  4: stairs
+  5: ramp
+  6: elevator
+  7: dimensions
+  8: room_tag
+  9: sink

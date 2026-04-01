@@ -1,0 +1,7 @@
+pandas>=2.0
+shapely>=2.0
+matplotlib>=3.7
+Pillow>=10.0
+tqdm>=4.65
+ultralytics>=8.3
+opencv-python>=4.8
