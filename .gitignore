@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Data (large, regenerable)
+dataset/
+Floorplan_Dataset3_3_10_2026/
+runs/
+*.pt
+
+# Local reference docs
+reference0331/
+
+# Claude Code config (personal dev environment)
+CLAUDE.md
+.claude/
