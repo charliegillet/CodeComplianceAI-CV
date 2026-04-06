@@ -10,7 +10,7 @@ Annotate these 17 elements on Architecttura floor plans in Label Studio using bo
 
 ## Fully Annotated Examples
 
-[INSERT: 1-2 screenshots of a fully labeled floor plan in Label Studio showing multiple classes annotated]
+[INSERT: 1-2 screenshots of a fully labeled floor plan in Label Studio showing all classes annotated]
 
 ---
 
@@ -26,40 +26,62 @@ Annotate these 17 elements on Architecttura floor plans in Label Studio using bo
 
 ### Building Elements
 
-| Example | Class | Box guidance |
-|---------|-------|-------------|
-| [INSERT] | **Door** | Include swing arc, not the door tag |
-| [INSERT] | **Stairs** | Full staircase including treads and direction arrow |
-| [INSERT] | **Ramp** | Full ramp run, landing to landing |
-| [INSERT] | **Elevator** | Full shaft/car outline |
-| [INSERT] | **Corridor** | Wall to wall, full length |
+**1. Door** — include swing arc, not the door tag
+[INSERT SCREENSHOT]
 
-### Plumbing Fixtures
+**2. Stairs** — full staircase including treads and direction arrow
+[INSERT SCREENSHOT]
 
-| Example | Class | Box guidance |
-|---------|-------|-------------|
-| [INSERT] | **Toilet** | Fixture only, not grab bars |
-| [INSERT] | **Sink** | Fixture only |
-| [INSERT] | **Shower** | Full enclosure outline |
-| [INSERT] | **Bathtub** | Tub outline |
-| [INSERT] | **Urinal** | Fixture only |
-| [INSERT] | **Drinking Fountain** | Each fountain individually, even if paired |
+**3. Ramp** — full ramp run, landing to landing
+[INSERT SCREENSHOT]
+
+**4. Elevator** — full shaft/car outline
+[INSERT SCREENSHOT]
+
+**5. Corridor** — wall to wall, full length
+[INSERT SCREENSHOT]
+
+### Fixtures
+
+**6. Toilet** — fixture only, not grab bars
+[INSERT SCREENSHOT]
+
+**7. Sink** — fixture only
+[INSERT SCREENSHOT]
+
+**8. Shower** — full enclosure outline
+[INSERT SCREENSHOT]
+
+**9. Bathtub** — tub outline
+[INSERT SCREENSHOT]
+
+**10. Urinal** — fixture only
+[INSERT SCREENSHOT]
+
+**11. Drinking Fountain** — each fountain individually, even if paired
+[INSERT SCREENSHOT]
 
 ### Other Elements
 
-| Example | Class | Box guidance |
-|---------|-------|-------------|
-| [INSERT] | **Handrail** | Full run along stair/ramp |
-| [INSERT] | **Counter** | Full counter including any lowered section |
+**12. Handrail** — full run along stair/ramp
+[INSERT SCREENSHOT]
+
+**13. Counter** — full counter including any lowered section
+[INSERT SCREENSHOT]
 
 ### Annotations & Symbols
 
-| Example | Class | Box guidance |
-|---------|-------|-------------|
-| [INSERT] | **Dimension Line** | Arrows + extension lines + measurement text |
-| [INSERT] | **Room Tag** | Room name + number together in one box |
-| [INSERT] | **Door Tag** | Tag symbol + text only, not the door |
-| [INSERT] | **Slope Arrow** | Arrow + slope text |
+**14. Dimension Line** — arrows + extension lines + measurement text
+[INSERT SCREENSHOT]
+
+**15. Room Tag** — room name + number together in one box
+[INSERT SCREENSHOT]
+
+**16. Door Tag** — tag symbol + text only, not the door
+[INSERT SCREENSHOT]
+
+**17. Slope Arrow** — arrow + slope text
+[INSERT SCREENSHOT]
 
 ---
 
