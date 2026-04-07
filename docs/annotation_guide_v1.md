@@ -16,6 +16,7 @@ Annotate these 17 elements on Architecttura floor plans in Label Studio using bo
 
 ## Rules
 
+- **Only annotate floor plans (overhead view).** DO NOT annotate elevations, sections, or details. If the sheet title says "elevations", "sections", or "details", skip it.
 - **Tight boxes** — minimal whitespace around each element
 - **Separate overlapping elements** — a door and its door tag get separate boxes
 - **Unsure? Skip it** — a wrong label is worse than a missing one. Ask in Slack with a screenshot
