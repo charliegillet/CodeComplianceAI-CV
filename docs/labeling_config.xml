@@ -1,0 +1,22 @@
+<View>
+  <Image name="image" value="$image"/>
+  <RectangleLabels name="label" toName="image">
+    <Label value="door" background="#FF0000"/>
+    <Label value="stairs" background="#FF8C00"/>
+    <Label value="ramp" background="#FFD700"/>
+    <Label value="elevator" background="#32CD32"/>
+    <Label value="corridor" background="#00CED1"/>
+    <Label value="toilet" background="#1E90FF"/>
+    <Label value="sink" background="#6A5ACD"/>
+    <Label value="shower" background="#FF69B4"/>
+    <Label value="bathtub" background="#BA55D3"/>
+    <Label value="urinal" background="#8B4513"/>
+    <Label value="drinking_fountain" background="#2E8B57"/>
+    <Label value="handrail" background="#DC143C"/>
+    <Label value="counter" background="#4682B4"/>
+    <Label value="dimension_line" background="#FF4500"/>
+    <Label value="room_tag" background="#9ACD32"/>
+    <Label value="door_tag" background="#00BFFF"/>
+    <Label value="slope_arrow" background="#DAA520"/>
+  </RectangleLabels>
+</View>
