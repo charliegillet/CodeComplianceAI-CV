@@ -43,33 +43,31 @@ Raw PDF floor plans (Architecttura / Google Drive / website uploads)
 
 ### v1 Training Classes (active — 117 images, 6 annotators)
 
-These are the classes being actively labeled and trained. Chosen based on: frequency in Architecttura floor plans, visual distinguishability at model resolution, and ADA/AODA compliance value.
+These 17 classes are being actively labeled and trained per `docs/annotation_guide_v1.md`. Chosen based on: frequency in Architecttura floor plans, visual distinguishability at model resolution, and ADA/AODA compliance value.
 
 ```
-0  = door                    (ADA 10/10 — clear width 32", maneuvering clearance, hardware, closing force)
-1  = window                  (ADA 4/10 — operable hardware in accessible units; high frequency aids model)
-2  = corridor/hallway        (ADA 10/10 — min 36" width, slope limits; NOTE: semantic class, low instance count)
-3  = toilet                  (ADA 10/10 — centerline 16-18" from wall, seat height 17-19", clear floor space)
-4  = stairs                  (ADA 9/10 — tread/riser dims, handrails 34-38"; flags need for accessible alternative)
-5  = ramp                    (ADA 10/10 — max 1:12 slope, 36" width, handrails, landings; NOTE: rare in dataset)
-6  = elevator                (ADA 10/10 — min 51"x68" car, Braille controls, audible signals)
-7  = dimensions/dimension_line (ADA 10/10 — critical for verifying all ADA clearances via OCR)
-8  = room_tag                (ADA 8/10 — identifies room function → determines applicable ADA requirements)
-9  = sink                    (ADA 10/10 — knee clearance 27", rim height 34" max, insulated pipes)
-10 = grab_bar                (ADA 10/10 — side wall 42" min, rear wall 36" min, at 33-36" height; at toilets/showers)
-11 = shower                  (ADA 10/10 — roll-in 30"x60" or transfer 36"x36", flush threshold, grab bars, seat)
-12 = bathtub                 (ADA 9/10 — grab bars, seat, 30"x60" clear floor space)
-13 = urinal                  (ADA 9/10 — rim 17" max, flush controls 44" max, 30"x48" clear floor space)
-14 = drinking_fountain        (ADA 10/10 — spout 36" max, knee clearance, 50% per floor must be accessible)
-15 = handrail                (ADA 9/10 — 34-38" height, 1.25-2" diameter, extensions at top/bottom of stairs/ramps)
-16 = accessible_parking       (ADA 10/10 — 96" min width, access aisle, signage, connected to accessible route)
-17 = automatic_door           (ADA 10/10 — AODA requires at universal washrooms; distinct double-arrow/sensor symbol)
-18 = emergency_exit           (ADA 10/10 — accessible hardware, on accessible egress route, tactile signage)
-19 = counter/service_counter  (ADA 10/10 — lowered section 36" max height, 36" min length required)
-20 = wheelchair_turning_space (ADA 10/10 — 60" diameter circle or T-shaped; often drawn as dashed circle on plans)
+ 0 = bathtub              (ADA 9/10 — grab bars, seat, 30"x60" clear floor space)
+ 1 = corridor             (ADA 10/10 — min 36" width, slope limits; NOTE: semantic class, low instance count)
+ 2 = counter              (ADA 10/10 — lowered section 36" max height, 36" min length required)
+ 3 = dimension_line       (ADA 10/10 — critical for verifying all ADA clearances via OCR)
+ 4 = door                 (ADA 10/10 — clear width 32", maneuvering clearance, hardware, closing force)
+ 5 = door_tag             (ADA 7/10 — links to door schedule for width, hardware, closer specs)
+ 6 = drinking_fountain    (ADA 10/10 — spout 36" max, knee clearance, 50% per floor must be accessible)
+ 7 = elevator             (ADA 10/10 — min 51"x68" car, Braille controls, audible signals)
+ 8 = handrail             (ADA 9/10 — 34-38" height, 1.25-2" diameter, extensions at top/bottom of stairs/ramps)
+ 9 = ramp                 (ADA 10/10 — max 1:12 slope, 36" width, handrails, landings; NOTE: rare in dataset)
+10 = room_tag             (ADA 8/10 — identifies room function → determines applicable ADA requirements)
+11 = shower               (ADA 10/10 — roll-in 30"x60" or transfer 36"x36", flush threshold, grab bars, seat)
+12 = sink                 (ADA 10/10 — knee clearance 27", rim height 34" max, insulated pipes)
+13 = slope_arrow          (ADA 9/10 — verifies ramp and walkway slope compliance)
+14 = stairs               (ADA 9/10 — tread/riser dims, handrails 34-38"; flags need for accessible alternative)
+15 = toilet               (ADA 10/10 — centerline 16-18" from wall, seat height 17-19", clear floor space)
+16 = urinal               (ADA 9/10 — rim 17" max, flush controls 44" max, 30"x48" clear floor space)
 ```
 
-**Known data gaps:** ramp (0 instances in sample labels), elevator (2 instances), corridor (7 instances). New classes (10-20) need instance counts verified during annotation — if any class has < 30 instances across all 117 images, consider deferring to v2.
+**Known data gaps:** ramp (0 instances in sample labels), slope_arrow (0 instances), elevator (4 instances), corridor (27 instances — from Charlie's 10 images). Classes with < 30 instances across all 117 images may need to be deferred to v2.
+
+**v1 excludes (deferred to v2+):** window, grab_bar, accessible_parking, automatic_door, emergency_exit, wheelchair_turning_space. See annotation guide for rationale.
 
 ### Full ADA/AODA Element Taxonomy (reference for future phases)
 
@@ -272,17 +270,14 @@ When making changes, consider how they affect the pipeline end-to-end: annotatio
 
 ## Agent Team Strategy
 
-Use the `codecapture-cv` team with specialized agents:
-- **cv-researcher**: Explores datasets, annotation tools, model architectures, and best practices
-- **pipeline-builder**: Implements data conversion scripts, training configs, and automation
-- **devils-advocate**: Challenges assumptions, identifies risks, questions dataset quality and model choices — run this agent on any significant technical decision before committing to it
+Use agent teams for any task that benefits from parallel work across independent modules. Teams are enabled via `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` in settings.
 
 ### When to Use Teams
 
-- Multi-step features spanning annotation, training, and deployment
+- Multi-file features spanning frontend, backend, and tests
 - Research + implementation in parallel
 - Debugging with competing hypotheses
-- Any task with 3+ independent subtasks
+- Any task with 3+ independent subtasks that don't touch the same files
 
 ### When NOT to Use Teams
 
@@ -290,4 +285,36 @@ Use the `codecapture-cv` team with specialized agents:
 - Changes to a single file or tightly coupled files
 - Simple bug fixes or small tweaks
 
-Spawn agents in parallel when tasks are independent. Use the devil's advocate agent before major architectural decisions to stress-test the approach.
+### Team Configuration
+
+- Start with 3-5 teammates for most workflows
+- Use delegate mode (`Shift+Tab`) when the lead should only coordinate
+- Use `SendMessage` (type: "message") for direct teammate communication
+- Use `TaskCreate`/`TaskUpdate`/`TaskList` for work coordination
+- Mark tasks `completed` only after verification passes
+
+## Workflow Orchestration
+
+### 1. Plan Mode Default
+
+- Enter plan mode for ANY non-trivial task (3+ steps or architectural decisions)
+- If something goes sideways, STOP and re-plan immediately
+- Write detailed specs upfront to reduce ambiguity
+
+### 2. Subagent Strategy
+
+- Use subagents to keep main context window clean
+- Offload research, exploration, and parallel analysis to subagents
+- One task per subagent for focused execution
+
+### 3. Verification Before Done
+
+- Never mark a task complete without proving it works
+- Run tests, check logs, demonstrate correctness
+- Ask: "Would a staff engineer approve this?"
+
+### 4. Autonomous Bug Fixing
+
+- When given a bug report: just fix it. Don't ask for hand-holding
+- Point at logs, errors, failing tests — then resolve them
+- Go fix failing CI tests without being told how
