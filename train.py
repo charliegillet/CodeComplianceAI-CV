@@ -19,7 +19,9 @@ DEFAULTS: dict = {
     "model": "yolov12n.pt",
     "imgsz": 1024,
     "epochs": 100,
-    "batch": 16,
+    "batch": 4,
+    "patience": 20,
+    "device": "mps",
     "project": "runs/detect",
     "name": "floor_plan",
     # Disable color jitter — floor plans are B&W line drawings

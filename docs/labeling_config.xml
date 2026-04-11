@@ -1,6 +1,8 @@
 <View>
   <Image name="image" value="$image"/>
-  <RectangleLabels name="label" toName="image">
+  <RectangleLabels name="label" toName="image"
+                   model_score_threshold="0.15"
+                   model_path="codecapture_floorplan.pt">
     <Label value="door" background="#FF0000"/>
     <Label value="stairs" background="#FF8C00"/>
     <Label value="ramp" background="#FFD700"/>
