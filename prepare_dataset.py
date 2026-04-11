@@ -38,6 +38,8 @@ def find_source_image(label_stem: str, images_dir: Path) -> Path | None:
     """Find the source image matching a label file stem.
 
     Handles Label Studio replacing '&' with '_' in filenames during export.
+    For example, 'A701_Custodial_Plans_&_Elevations_p1' exports as
+    'A701_Custodial_Plans__Elevations_p1' (the '&' is dropped, leaving '__').
     """
     clean_stem = strip_uuid_prefix(label_stem)
 
@@ -47,13 +49,12 @@ def find_source_image(label_stem: str, images_dir: Path) -> Path | None:
         if candidate.exists():
             return candidate
 
-        # Try replacing '_' with '&' at each position (handles & -> _ substitution)
-        for i, ch in enumerate(clean_stem):
-            if ch == "_":
-                restored = clean_stem[:i] + "&" + clean_stem[i + 1 :]
-                candidate = images_dir / f"{restored}{ext}"
-                if candidate.exists():
-                    return candidate
+        # Try restoring '&' where '__' appears (Label Studio drops '&' from '_&_')
+        if "__" in clean_stem:
+            restored = clean_stem.replace("__", "_&_")
+            candidate = images_dir / f"{restored}{ext}"
+            if candidate.exists():
+                return candidate
 
     return None
 
